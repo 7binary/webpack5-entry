@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -48,14 +47,6 @@ module.exports = (env) => {
       new MiniCssExtractPlugin({
         filename: filename('css'),
       }),
-      new CopyPlugin({
-        patterns: [
-          {
-            from: path.resolve(__dirname, 'src/favicon.ico'),
-            to: path.resolve(__dirname, 'dist'),
-          },
-        ],
-      }),
       new HtmlPlugin({
         title: 'Webpack5',
         favicon: path.resolve(__dirname, 'src/favicon.ico'),
@@ -76,17 +67,6 @@ module.exports = (env) => {
             options: {
               presets: ['@babel/preset-env'],
               plugins: ['@babel/plugin-proposal-class-properties'],
-            },
-          },
-        },
-        {
-          test: /\.ts$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/'],
             },
           },
         },
