@@ -39,6 +39,8 @@ module.exports = (env) => {
       ],
     },
     devServer: {
+      contentBase: path.join(__dirname, 'src'),
+      watchContentBase: true,
       port: 4200,
       hot: isDev,
     },
